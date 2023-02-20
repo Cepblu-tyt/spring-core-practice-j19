@@ -1,5 +1,9 @@
 package org.sda;
 
+import org.sda.beans.MyBean;
+import org.sda.configuration.ApplicationConfiguration;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
 /**
  *
  * @author Sergei Oksanen
@@ -7,6 +11,13 @@ package org.sda;
  */
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
+        applicationContext.register(ApplicationConfiguration.class);
+        applicationContext.refresh();
+
+        MyBean myBean = applicationContext.getBean(MyBean.class);
+        System.out.println(myBean.sayHello());
+
+
     }
 }
